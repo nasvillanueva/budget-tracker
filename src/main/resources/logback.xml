@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false" scan="true">
+
+  <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%-30(%d %-5level) [%thread] %logger{50} - %msg%n</pattern>
+      <immediateFlush>true</immediateFlush>
+    </encoder>
+  </appender>
+
+  <appender name="SERVERLOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>logs/server.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <!-- daily rollover -->
+      <fileNamePattern>logs/server.%d{yyyy-MM-dd}.%i.zip</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>100MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+
+      <!-- keep 30 days' worth of history -->
+      <maxHistory>30</maxHistory>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%-30(%d{HH:mm:ss.SSS} %-5level) [%thread] %logger{50} - %msg%n</pattern>
+      <immediateFlush>true</immediateFlush>
+      <outputPatternAsHeader>true</outputPatternAsHeader>
+    </encoder>
+  </appender>
+
+  <!-- APP LOGGER -->
+  <logger level="DEBUG" name="com.nasvillanueva.budgettracker"/>
+  <logger level="DEBUG" additivity="true" name="com.mysema.query.sql"/>
+
+  <!-- LIB LOGGER -->
+  <logger name="org.hibernate" level="ERROR"/>
+  <logger name="org.springframework" level="INFO"/>
+  <logger name="org.springframework.jms" level="INFO"/>
+  <logger name="springfox.documentation" level="ERROR"/>
+
+  <!-- SYSTEM LOGGER -->
+  <logger level="ERROR" additivity="false" name="System.err">
+    <appender-ref ref="CONSOLE"/>
+  </logger>
+
+  <logger level="INFO" additivity="false" name="System.out">
+    <appender-ref ref="CONSOLE"/>
+  </logger>
+
+  <!-- ROOT LOGGER -->
+  <root level="INFO">
+    <appender-ref ref="CONSOLE"/>
+    <appender-ref ref="SERVERLOG"/>
+  </root>
+
+</configuration>

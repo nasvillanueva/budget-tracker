@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure.dtd">
+
+<Configure id="Server" class="org.eclipse.jetty.webapp.WebAppContext">
+  <New id="budget-tracker-ds" class="org.eclipse.jetty.plus.jndi.Resource">
+    <Arg>jdbc/budget-tracker-ds</Arg>
+    <Arg>
+      <New class="com.zaxxer.hikari.HikariDataSource">
+        <Arg>
+          <New class="com.zaxxer.hikari.HikariConfig">
+            <Set name="maximumPoolSize">${jdbc.maxPoolSize}</Set>
+            <Set name="connectionTestQuery">SELECT 1</Set>
+            <Set name="dataSourceClassName">org.postgresql.ds.PGSimpleDataSource</Set>
+            <Call name="addDataSourceProperty">
+              <Arg>serverName</Arg>
+              <Arg>${jdbc.host}</Arg>
+            </Call>
+            <Call name="addDataSourceProperty">
+              <Arg>databaseName</Arg>
+              <Arg>${jdbc.schema}</Arg>
+            </Call>
+            <Call name="addDataSourceProperty">
+              <Arg>user</Arg>
+              <Arg>${jdbc.username}</Arg>
+            </Call>
+            <Call name="addDataSourceProperty">
+              <Arg>password</Arg>
+              <Arg>${jdbc.password}</Arg>
+            </Call>
+          </New>
+        </Arg>
+      </New>
+    </Arg>
+  </New>
+</Configure>

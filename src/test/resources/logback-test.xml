@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+
+  <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%-20(%d %-5level) [%thread] %logger{40} - %msg%n</pattern>
+      <immediateFlush>false</immediateFlush>
+    </encoder>
+  </appender>
+
+  <appender name="LOG_FILE" class="ch.qos.logback.core.FileAppender">
+    <file>./target/server.log</file>
+    <append>false</append>
+    <encoder>
+      <pattern>%-30(%d{HH:mm:ss.SSS} %-5level) [%thread] %logger{50} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <!-- APP LOGGER -->
+  <logger level="DEBUG" additivity="true" name="com.gomoto.mha"/>
+
+  <!-- LIB LOGGER -->
+  <logger level="INFO" additivity="true" name="org.hibernate"/>
+  <logger level="INFO" additivity="true" name="org.springframework.web"/>
+  <logger level="INFO" additivity="true" name="org.springframework.security"/>
+  <logger level="INFO" additivity="true" name="org.springframework.data"/>
+  <logger level="WARN" additivity="true" name="springfox" />
+
+  <!-- SYSTEM LOGGER -->
+  <logger level="ERROR" additivity="false" name="System.err">
+    <appender-ref ref="CONSOLE"/>
+  </logger>
+  <logger level="INFO" additivity="false" name="System.out">
+    <appender-ref ref="CONSOLE"/>
+  </logger>
+
+  <!-- ROOT LOGGER -->
+  <root level="INFO">
+    <appender-ref ref="CONSOLE"/>
+    <appender-ref ref="LOG_FILE"/>
+  </root>
+
+</configuration>
