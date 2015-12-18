@@ -1,23 +1,24 @@
 package com.nasvillanueva.budgettracker.controller;
 
+import com.nasvillanueva.budgettracker.model.constants.Role;
 import com.nasvillanueva.budgettracker.model.entity.UserAccount;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by NazIsEvil on 13/12/2015.
  */
-@Controller
-@RequestMapping("/")
+@RestController
+@RequestMapping("/api/test")
 public class TestController {
 
     @RequestMapping(method = RequestMethod.GET)
-    @ResponseBody
-    public String helloWorld() {
+    public ResponseEntity<UserAccount> helloWorld() {
         UserAccount userAccount = new UserAccount();
-        System.out.println(userAccount);
-        return "Hello World!";
+        userAccount.setRole(Role.ADMIN);
+        return new ResponseEntity<>(userAccount, HttpStatus.OK);
     }
 }

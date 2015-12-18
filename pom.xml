@@ -29,7 +29,7 @@
         <hibernate.core.version>5.0.3.Final</hibernate.core.version>
         <ehcache.version>2.6.11</ehcache.version>
         <hibernate.search.version>5.5.0.Final</hibernate.search.version>
-        <querydsl.version>3.6.9</querydsl.version>
+        <querydsl.version>3.7.0</querydsl.version>
         <dozer.version>5.5.1</dozer.version>
 
         <hibernate.validator.version>5.2.2.Final</hibernate.validator.version>
@@ -50,6 +50,10 @@
         <jslint.phase>compile</jslint.phase>
         <jslint4java.ant.version>2.0.5</jslint4java.ant.version>
 
+        <jackson.version>2.6.4</jackson.version>
+        <swagger.version>1.5.4</swagger.version>
+        <springfox.swagger.version>2.3.0</springfox.swagger.version>
+
         <!-- Database Configurations -->
         <jdbc.host>localhost</jdbc.host>
         <jdbc.port>5432</jdbc.port>
@@ -57,7 +61,7 @@
         <jdbc.schema>BUDGET_TRACKER</jdbc.schema>
         <jdbc.driverClassName>org.postgresql.Driver</jdbc.driverClassName>
         <jdbc.username>postgres</jdbc.username>
-        <jdbc.password>password</jdbc.password>
+        <jdbc.password>postgres</jdbc.password>
         <jdbc.maxPoolSize>100</jdbc.maxPoolSize>
         <hibernate.dialect>org.hibernate.dialect.PostgreSQL9Dialect</hibernate.dialect>
 
@@ -283,6 +287,45 @@
             <version>${slf4j.version}</version>
         </dependency>
 
+        <!-- Jackson -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <!--Swagger API Documentation-->
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox.swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${springfox.swagger.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -442,6 +485,13 @@
                         </configuration>
                     </execution>
                 </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.mysema.querydsl</groupId>
+                        <artifactId>querydsl-apt</artifactId>
+                        <version>${querydsl.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
 
