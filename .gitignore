@@ -9,3 +9,6 @@ target
 out
 gen
 rebel.xml
+bower_components
+node
+node_modules

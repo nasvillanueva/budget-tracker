@@ -1,0 +1,18 @@
+{
+  "name": "budget-tracker",
+  "version": "1.0.0",
+  "description": "Personal Budget Tracker for my daily expenses. ",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nasvillanueva/budget-tracker.git"
+  },
+  "author": "Nas Villanueva <nasvillanuevait@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nasvillanueva/budget-tracker/issues"
+  },
+  "homepage": "https://github.com/nasvillanueva/budget-tracker#readme",
+  "dependencies": {
+    "bower": "^1.7.1"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "budget-tracker",
+  "description": "Personal Budget Tracker for my daily expenses.",
+  "authors": [
+    "Nas Villanueva <nasvillanuevait@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/nasvillanueva/budget-tracker",
+  "moduleType": [],
+  "private": true
+}

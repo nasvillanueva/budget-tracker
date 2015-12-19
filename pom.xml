@@ -46,6 +46,11 @@
         <maven.antrun.plugin.version>1.8</maven.antrun.plugin.version>
         <maven.jetty.plugin.version>9.3.6.v20151106</maven.jetty.plugin.version>
         <maven.liquibase.plugin.version>3.4.2</maven.liquibase.plugin.version>
+        <maven.frontend.plugin.version>0.0.26</maven.frontend.plugin.version>
+
+        <maven.frontend.plugin.node.version>v4.2.3</maven.frontend.plugin.node.version>
+        <maven.frontend.plugin.npm.version>1.4.9</maven.frontend.plugin.npm.version>
+        <maven.frontend.install.phase>install</maven.frontend.install.phase>
 
         <jslint.phase>compile</jslint.phase>
         <jslint4java.ant.version>2.0.5</jslint4java.ant.version>
@@ -389,6 +394,8 @@
                 <version>${maven.war.plugin.version}</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <packagingExcludes>**/SwaggerConfig.class</packagingExcludes>
+                    <warSourceExcludes>**/node/**,**/node_modules/**</warSourceExcludes>
                 </configuration>
             </plugin>
             <plugin>
@@ -457,7 +464,7 @@
                                     <formatter type="plain"/>
                                     <fileset
                                             dir="${basedir}/src/main/webapp"
-                                            includes="**/*.js"/>
+                                            includes="**/*.js" excludes="bower_components/**,node/**,node_modules/**"/>
                                 </jslint>
                             </target>
                         </configuration>
@@ -492,6 +499,48 @@
                         <version>${querydsl.version}</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>${maven.frontend.plugin.version}</version>
+                <configuration>
+                    <workingDirectory>src/main/webapp</workingDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                        <phase>${maven.frontend.install.phase}</phase>
+                        <configuration>
+                            <nodeVersion>${maven.frontend.plugin.node.version}</nodeVersion>
+                            <npmVersion>${maven.frontend.plugin.npm.version}</npmVersion>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <phase>${maven.frontend.install.phase}</phase>
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>bower install</id>
+                        <goals>
+                            <goal>bower</goal>
+                        </goals>
+                        <phase>${maven.frontend.install.phase}</phase>
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
 

@@ -7,7 +7,7 @@ Personal Budget Tracker for my daily expenses.
 * JDK 1.8 or above
 * Maven
 * IDE
-* Postgresql
+* PostgreSQL
 
 ### Building the Application
 
@@ -20,3 +20,7 @@ Personal Budget Tracker for my daily expenses.
 * Run `mvn jetty:run [-o] [-Pupdate-db] [-Ppurge]` on project root dir
 * Run `update-db` profile to sync local entities with the latest database definitions
 * Run `purge` profile with `update-db` profile to drop schema before recreation of tables in liquibase
+
+### Troubleshooting
+
+* If you're getting a build error caused by [`CreateProcess error=193, %1 is not a valid Win32 application`]. Please download `node.exe` and `node.lib` manually from http://nodejs.org/dist/v4.2.3/win-x64/ and put it inside /src/main/webapp/node/
