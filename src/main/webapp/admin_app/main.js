@@ -80,7 +80,8 @@ require([
     'moment',
     'angular-moment',
     'ngstorage',
-    'sb-admin'
+    'sb-admin',
+    '/admin_app/core/core.module.js'
 ], function(angular){
     angular.element().ready(function(){
         angular.bootstrap(document, [
@@ -93,7 +94,8 @@ require([
             'ui.bootstrap',
             'toaster',
             'angularMoment',
-            'ngStorage'
+            'ngStorage',
+            'core.module'
         ]);
     });
 });

@@ -460,7 +460,7 @@
                                          classpath="${settings.localRepository}/com/googlecode/jslint4java/jslint4java-ant/2.0.5/jslint4java-ant-2.0.5.jar"/>
                                 <jslint
                                         options="sloppy,white,browser,devel,regexp,newcap,unparam">
-                                    <predef>console,angular,require</predef>
+                                    <predef>console,angular,require,define</predef>
                                     <formatter type="plain"/>
                                     <fileset
                                             dir="${basedir}/src/main/webapp"
